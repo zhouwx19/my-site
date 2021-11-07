@@ -3,7 +3,10 @@ site_name: blog
 nav:
   - 说明: index.md
   - geant4相关:
-    - 安装: geant4/安装.md
+    - geant4安装: geant4/安装.md
+
+repo_name: 'my-site'
+repo_url: 'https://github.com/zhouwx19/my-site'
 
 theme:
   name: material

@@ -1,4 +1,6 @@
-# Welcome to My blog
+# 说明
+
+记录常见问题，方便下次查找
 
 
 

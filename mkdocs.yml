@@ -4,6 +4,7 @@ nav:
   - 说明: index.md
   - geant4相关:
     - geant4安装: geant4/安装.md
+    - geant4调试: geant4/VScode断点调试.md
 
 repo_name: 'my-site'
 repo_url: 'https://github.com/zhouwx19/my-site'

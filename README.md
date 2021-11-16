@@ -11,3 +11,5 @@
 ### 一、geant4 相关
 
 #### 1，安装 geant4 教程
+#### 2，geant4/VScode断点调试
+#### 3，cern ROOT/VScode断点调试

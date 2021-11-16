@@ -1,0 +1,1011 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.6">
+    
+    
+      
+        <title>geant4安装 - blog</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.a57b2b03.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.3f5d1f46.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+    
+      
+
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="">
+  
+    
+    <script>function __prefix(e){return new URL("../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+      <script>var palette=__get("__palette");if(null!==palette&&"object"==typeof palette.color)for(var key in palette.color)document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#windows-wsl-ubuntu-geant4" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="blog" class="md-header__button md-logo" aria-label="blog" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            blog
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              geant4安装
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7M9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9v1z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/zhouwx19/my-site/" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    my-site
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="blog" class="md-nav__button md-logo" aria-label="blog" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    blog
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/zhouwx19/my-site/" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    my-site
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        说明
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          geant4相关
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="geant4相关" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          geant4相关
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          geant4安装
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        geant4安装
+      </a>
+      
+        
+
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#windowsubuntu" class="md-nav__link">
+    一．在windows电脑安装ubuntu子系统
+  </a>
+  
+    <nav class="md-nav" aria-label="一．在windows电脑安装ubuntu子系统">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-windows" class="md-nav__link">
+    1. 设置windows电脑
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-ubuntu" class="md-nav__link">
+    2. 安装和设置ubuntu
+  </a>
+  
+    <nav class="md-nav" aria-label="2. 安装和设置ubuntu">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21" class="md-nav__link">
+    2.1 安装
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22" class="md-nav__link">
+    2.2 更换为国内源。
+  </a>
+  
+    <nav class="md-nav" aria-label="2.2 更换为国内源。">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1ubuntu" class="md-nav__link">
+    1.打开ubuntu方式有：
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    2.使用清华大学开源镜像
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#geant4" class="md-nav__link">
+    二．安装geant4
+  </a>
+  
+    <nav class="md-nav" aria-label="二．安装geant4">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-cmakegeant4" class="md-nav__link">
+    1. 安装cmake以及geant4依赖
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-geant4" class="md-nav__link">
+    2. 下载geant4 点击下载
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-clhep" class="md-nav__link">
+    3. 下载CLHEP 点击下载
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    4. 安装
+  </a>
+  
+    <nav class="md-nav" aria-label="4. 安装">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-clhep" class="md-nav__link">
+    4.1 安装CLHEP
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-geant4" class="md-nav__link">
+    4.2 安装geant4
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-xming" class="md-nav__link">
+    4.3 安装 Xming  点击下载
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44-geant4" class="md-nav__link">
+    4.4 geant4测试
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#45-root" class="md-nav__link">
+    4.5 安装root点击下载
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../VScode%E6%96%AD%E7%82%B9%E8%B0%83%E8%AF%95/" class="md-nav__link">
+        geant4调试
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Root%E8%B0%83%E8%AF%95/" class="md-nav__link">
+        root 调试
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#windowsubuntu" class="md-nav__link">
+    一．在windows电脑安装ubuntu子系统
+  </a>
+  
+    <nav class="md-nav" aria-label="一．在windows电脑安装ubuntu子系统">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-windows" class="md-nav__link">
+    1. 设置windows电脑
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-ubuntu" class="md-nav__link">
+    2. 安装和设置ubuntu
+  </a>
+  
+    <nav class="md-nav" aria-label="2. 安装和设置ubuntu">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21" class="md-nav__link">
+    2.1 安装
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22" class="md-nav__link">
+    2.2 更换为国内源。
+  </a>
+  
+    <nav class="md-nav" aria-label="2.2 更换为国内源。">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1ubuntu" class="md-nav__link">
+    1.打开ubuntu方式有：
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    2.使用清华大学开源镜像
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#geant4" class="md-nav__link">
+    二．安装geant4
+  </a>
+  
+    <nav class="md-nav" aria-label="二．安装geant4">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-cmakegeant4" class="md-nav__link">
+    1. 安装cmake以及geant4依赖
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-geant4" class="md-nav__link">
+    2. 下载geant4 点击下载
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-clhep" class="md-nav__link">
+    3. 下载CLHEP 点击下载
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    4. 安装
+  </a>
+  
+    <nav class="md-nav" aria-label="4. 安装">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-clhep" class="md-nav__link">
+    4.1 安装CLHEP
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-geant4" class="md-nav__link">
+    4.2 安装geant4
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-xming" class="md-nav__link">
+    4.3 安装 Xming  点击下载
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44-geant4" class="md-nav__link">
+    4.4 geant4测试
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#45-root" class="md-nav__link">
+    4.5 安装root点击下载
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/zhouwx19/my-site/edit/master/docs/geant4/安装.md" title="编辑此页" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="windows-wsl-ubuntu-geant4">Windows子系统 WSL (Ubuntu) 安装geant4教程<a class="headerlink" href="#windows-wsl-ubuntu-geant4" title="Permanent link">&para;</a></h1>
+<p>2021-11-06</p>
+<h2 id="windowsubuntu">一．在windows电脑安装ubuntu子系统<a class="headerlink" href="#windowsubuntu" title="Permanent link">&para;</a></h2>
+<h3 id="1-windows">1. 设置windows电脑<a class="headerlink" href="#1-windows" title="Permanent link">&para;</a></h3>
+<p>(1) 在windows左下角搜索框中输入
+<div class="highlight"><pre><span></span><code>启用或关闭Windows功能
+</code></pre></div>
+(2)点击进入  <strong>启用或关闭Windows功能</strong>
+<img alt="1" src="../imgs/%E5%AE%89%E8%A3%85/1.png" /></p>
+<p>(3)选择适用于Linux的Windows子系统</p>
+<p>(4)点击确定</p>
+<p>(5)重启计算机
+<img alt="2" src="../imgs/%E5%AE%89%E8%A3%85/2.png" /></p>
+<h3 id="2-ubuntu">2. 安装和设置ubuntu<a class="headerlink" href="#2-ubuntu" title="Permanent link">&para;</a></h3>
+<h4 id="21">2.1 安装<a class="headerlink" href="#21" title="Permanent link">&para;</a></h4>
+<p>(1)重启电脑后，进入微软商店<code>Micrsoft Store</code>。搜索</p>
+<div class="codehilite"><pre><span></span><code>ubuntu
+</code></pre></div>
+
+<p><img alt="3" src="../imgs/%E5%AE%89%E8%A3%85/3.png" /></p>
+<p>(2)选择Ubuntu20.04 LTS, 然后点击安装</p>
+<p><img alt="4" src="../imgs/%E5%AE%89%E8%A3%85/4.png" />
+<img alt="5" src="../imgs/%E5%AE%89%E8%A3%85/5.png" /></p>
+<p>(3)安装完成后点击 <code>启动</code>。需要等几分钟初始化，然后按照提示设置用户名与密码即可。
+<img alt="6" src="../imgs/%E5%AE%89%E8%A3%85/6.png" /></p>
+<h4 id="22">2.2 更换为国内源。<a class="headerlink" href="#22" title="Permanent link">&para;</a></h4>
+<h5 id="1ubuntu">1.打开ubuntu方式有：<a class="headerlink" href="#1ubuntu" title="Permanent link">&para;</a></h5>
+<p>(1)在应用栏找到<code>Ubuntu 20.04 LTS</code>图标点击</p>
+<p>(2)在任一文件路径处，输入<code>bash</code></p>
+<p><img alt="7" src="../imgs/%E5%AE%89%E8%A3%85/7.png" /></p>
+<p>(3)快捷键，依次按下 <code>Shift</code>, <code>鼠标右键</code>, <code>L</code></p>
+<h5 id="2">2.使用<a href="https://mirrors.tuna.tsinghua.edu.cn/help/ubuntu/">清华大学开源镜像</a><a class="headerlink" href="#2" title="Permanent link">&para;</a></h5>
+<p>打开ubuntu以后，输入命令：</p>
+<div class="codehilite"><pre><span></span><code>sudo nano /etc/apt/sources.list
+</code></pre></div>
+
+<p>将sources.list文件内容替换如下内容：</p>
+<div class="highlight"><pre><span></span><code># 默认注释了源码镜像以提高 apt update 速度，如有需要可自行取消注释
+deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal main restricted universe multiverse
+# deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal main restricted universe multiverse
+deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal-updates main restricted universe multiverse
+# deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal-updates main restricted universe multiverse
+deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal-backports main restricted universe multiverse
+# deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal-backports main restricted universe multiverse
+deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal-security main restricted universe multiverse
+# deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal-security main restricted universe multiverse
+
+# 预发布软件源，不建议启用
+# deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal-proposed main restricted universe multiverse
+# deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal-proposed main restricted universe multiverse
+</code></pre></div>
+<p><strong>注意，这里使用http，而非https</strong></p>
+<p>按下<code>Ctrl+O</code>和<code>Enter</code>保存命令，按下<code>Ctrl+X</code>退出编辑</p>
+<p>进行更新：</p>
+<div class="codehilite"><pre><span></span><code>sudo apt-get update &amp;&amp; sudo apt-get upgrade
+</code></pre></div>
+
+<h2 id="geant4">二．安装geant4<a class="headerlink" href="#geant4" title="Permanent link">&para;</a></h2>
+<h3 id="1-cmakegeant4">1. 安装cmake以及geant4依赖<a class="headerlink" href="#1-cmakegeant4" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code>sudo apt-get install -y cmake
+sudo apt-get install -y cmake-qt-gui 
+sudo apt-get install -y cmake-curses-gui
+sudo apt-get install -y build-essential
+sudo apt-get install -y libexpat-dev libgl1-mesa-dev libglu1-mesa-dev libxt-dev libxmu-dev libxerces-c-dev libxi-dev zlib1g-dev libgl2ps-dev libexpat1-dev libmotif-dev qt5*
+</code></pre></div>
+
+<h3 id="2-geant4">2. 下载geant4 <a href="https://geant4.web.cern.ch/support/download">点击下载</a><a class="headerlink" href="#2-geant4" title="Permanent link">&para;</a></h3>
+<p><img alt="9" src="../imgs/%E5%AE%89%E8%A3%85/9.png" /></p>
+<h3 id="3-clhep">3. 下载CLHEP <a href="https://proj-clhep.web.cern.ch/proj-clhep/clhep23.html">点击下载</a><a class="headerlink" href="#3-clhep" title="Permanent link">&para;</a></h3>
+<p><img alt="8" src="../imgs/%E5%AE%89%E8%A3%85/8.png" /></p>
+<h3 id="4">4. 安装<a class="headerlink" href="#4" title="Permanent link">&para;</a></h3>
+<p>在任意盘中，我这里以放在D盘为例：新建文件夹geant4，并将上面下载的安装包解压后放置其中，结构如下：</p>
+<p><div class="highlight"><pre><span></span><code>geant4/
+├─ CLHEP/
+│  └─ 2.4.5.1/
+│     └─ CLHEP/
+└─ build/
+└─ geant4_10_07_p02/
+└─ install/
+</code></pre></div>
+其中，需要新建<code>build</code> 和 <code>install</code> 文件夹。
+如果版本发生变化，<code>geant4_10_07_p02</code>名字以实际为准</p>
+<h4 id="41-clhep">4.1 安装CLHEP<a class="headerlink" href="#41-clhep" title="Permanent link">&para;</a></h4>
+<p>进入到文件夹 <code>2.4.5.1/</code>,并在当前文件目录中输入<code>bash</code>打开ubuntu。
+依次输入：</p>
+<div class="codehilite"><pre><span></span><code>mkdir build
+cd build
+</code></pre></div>
+
+<p>此时文件夹结构应该为：
+<div class="highlight"><pre><span></span><code>geant4/
+├─ CLHEP/
+│  └─ 2.4.5.1/
+│     └─ CLHEP/
+│     └─ build/
+└─ build/
+└─ geant4_10_07_p02/
+└─ install/
+</code></pre></div>
+解压方式不同，产生的子文件夹也不同。还请保证以上文件下没有与其同名的文件夹。</p>
+<p>ubuntu终端显示如下：</p>
+<p><img alt="10" src="../imgs/%E5%AE%89%E8%A3%85/10.png" /></p>
+<p>然后依次输入以下命令即可安装成功CLHEP：</p>
+<p><div class="highlight"><pre><span></span><code>cmake ../CLHEP                       
+make -j8
+make install
+</code></pre></div>
+如果在安装过程中出现<code>Permission denied</code>,输入 <code>sudo su</code> 以便有足够的权限</p>
+<p>关闭此ubuntu终端</p>
+<h4 id="42-geant4">4.2 安装geant4<a class="headerlink" href="#42-geant4" title="Permanent link">&para;</a></h4>
+<p>进入文件夹<code>geant4/build/</code>,在此路径下打开一个新的ubuntu终端。</p>
+<p>输入<code>cmake</code>命令:</p>
+<div class="codehilite"><pre><span></span><code>cmake ../geant4_10_07_p02
+</code></pre></div>
+
+<p>使用ccmake 图形化编译</p>
+<div class="codehilite"><pre><span></span><code>ccmake .
+</code></pre></div>
+
+<p><img alt="11" src="../imgs/%E5%AE%89%E8%A3%85/11.png" /></p>
+<p>其中 CMAKE_INSTALL_PREFIX一项对应 /geant4/install，后面geant4会安装在这个路径下</p>
+<p>不指定datadir路径，11个Data files 会自动下载,</p>
+<p>注意：网站上应该有12个Data files，这里缺少文件 G4TENDL1.3.2</p>
+<p>也可以提前下载好12个Data files，并指定 GENAT4_INSTALL_DATADIR为存放地址。</p>
+<p>按下<code>c</code>进行编译，直到出现<code>g</code>，按下<code>g</code></p>
+<p><img alt="12" src="../imgs/%E5%AE%89%E8%A3%85/12.png" /></p>
+<p>进行编译：</p>
+<div class="codehilite"><pre><span></span><code>make -j8
+</code></pre></div>
+
+<p>编译时间较长，耐心等待</p>
+<p>编译完成后再安装：</p>
+<div class="codehilite"><pre><span></span><code>make install
+</code></pre></div>
+
+<p>安装完以后，需要把geant4 添加到环境变量：</p>
+<div class="codehilite"><pre><span></span><code>sudo nano ~/.bashrc
+</code></pre></div>
+
+<p>在文件最后一行加上：</p>
+<div class="codehilite"><pre><span></span><code>source /mnt/d/**/geant4/install/bin/geant4.sh
+</code></pre></div>
+
+<p>其中<code>**</code>需要修改为实际的路径 </p>
+<p>按下<code>Ctrl+O</code>和<code>Enter</code>保存命令，按下<code>Ctrl+X</code>退出编辑</p>
+<h4 id="43-xming">4.3 安装 Xming  <a href="https://sourceforge.net/projects/xming/files/Xming/6.9.0.31/Xming-6-9-0-31-setup.exe/download">点击下载</a><a class="headerlink" href="#43-xming" title="Permanent link">&para;</a></h4>
+<p>安装完以后，需要把Xming 添加到环境变量：</p>
+<div class="codehilite"><pre><span></span><code>sudo nano ~/.bashrc
+</code></pre></div>
+
+<p>最后一行加上：</p>
+<div class="codehilite"><pre><span></span><code>export DISPLAY=localhost:0.0
+</code></pre></div>
+
+<p>按下<code>Ctrl+O</code>和<code>Enter</code>保存命令，按下<code>Ctrl+X</code>退出编辑</p>
+<p>另外，还需要执行：</p>
+<div class="codehilite"><pre><span></span><code>sudo apt-get install x11-apps
+</code></pre></div>
+
+<p>按下win键，可以看到【最近添加】中有Xming 和XLaunch：</p>
+<p><img alt="13" src="../imgs/%E5%AE%89%E8%A3%85/13.png" /></p>
+<p>双击Xming，保证Xming出现在右下角隐藏的图标中：</p>
+<p><img alt="16" src="../imgs/%E5%AE%89%E8%A3%85/16.png" /></p>
+<p>此时在ubuntu终端输入：</p>
+<div class="codehilite"><pre><span></span><code>xeyes
+</code></pre></div>
+
+<p>如果左上角出现会随鼠标移动而转动的眼睛，表明安装成功</p>
+<p><img alt="15" src="../imgs/%E5%AE%89%E8%A3%85/15.png" /></p>
+<p>此外如果想调整Xming显示字大小的话，则需要</p>
+<p>在【最近添加】中找到Xming,  右键 -&gt; 更多 -&gt;  打开文件位置 
+找到Xming的快捷方式然后右键，点击属性</p>
+<p>在目标一栏的最后，添加 <code>-dpi 108</code> 即可</p>
+<p><img alt="14" src="../imgs/%E5%AE%89%E8%A3%85/14.png" /></p>
+<h4 id="44-geant4">4.4 geant4测试<a class="headerlink" href="#44-geant4" title="Permanent link">&para;</a></h4>
+<p>打开文件夹 geant4_10_07_p02/exapmles/basic/B1</p>
+<p>在此路径下打开ubuntu终端</p>
+<p>依次输入以下命令：</p>
+<div class="codehilite"><pre><span></span><code>mkdir build
+cd build
+cmake ..
+make 
+./exampleB1
+</code></pre></div>
+
+<p>会报错：
+<div class="highlight"><pre><span></span><code>./exampleB1: error while loading shared libraries: libQt5Core.so.5: cannot open shared object file: No such file or directory
+</code></pre></div>
+需要执行：</p>
+<div class="codehilite"><pre><span></span><code>sudo strip --remove-section=.note.ABI-tag /usr/lib/x86_64-linux-gnu/libQt5Core.so.5
+</code></pre></div>
+
+<p>然后再</p>
+<div class="codehilite"><pre><span></span><code>./exampleB1
+</code></pre></div>
+
+<p>会出现图形界面：</p>
+<p><img alt="17" src="../imgs/%E5%AE%89%E8%A3%85/17.png" /></p>
+<p>在session中输入:</p>
+<div class="codehilite"><pre><span></span><code>/run/beamOn 10
+</code></pre></div>
+
+<p>发射10个粒子</p>
+<p><img alt="18" src="../imgs/%E5%AE%89%E8%A3%85/18.png" /></p>
+<h4 id="45-root">4.5 安装root<a href="https://root.cern/install/all_releases/">点击下载</a><a class="headerlink" href="#45-root" title="Permanent link">&para;</a></h4>
+<p>安装依赖：</p>
+<div class="highlight"><pre><span></span><code>sudo apt-get install dpkg-dev cmake g++ gcc binutils libx11-dev libxpm-dev \
+libxft-dev libxext-dev python libssl-dev
+</code></pre></div>
+<p>可选安装：
+<div class="highlight"><pre><span></span><code>sudo apt-get install gfortran libpcre3-dev \
+xlibmesa-glu-dev libglew1.5-dev libftgl-dev \
+libmysqlclient-dev libfftw3-dev libcfitsio-dev \
+graphviz-dev libavahi-compat-libdnssd-dev \
+libldap2-dev python-dev libxml2-dev libkrb5-dev \
+libgsl0-dev
+</code></pre></div></p>
+<p>建议选择预编译好的 ubuntn20 版本，好处是添加环境变量即可使用：</p>
+<p><img alt="19" src="../imgs/%E5%AE%89%E8%A3%85/19.png" /></p>
+<p>添加环境变量：</p>
+<div class="codehilite"><pre><span></span><code>sudo nano ~/.bashrc
+</code></pre></div>
+
+<p>最后一行加上：</p>
+<div class="codehilite"><pre><span></span><code>source /mnt/d/**/root/bin/thisroot.sh
+</code></pre></div>
+
+<p>按下<code>Ctrl+O</code>和<code>Enter</code>保存命令，按下<code>Ctrl+X</code>退出编辑</p>
+<p>直接执行命令<code>root</code>即可使用root</p>
+<p><img alt="20" src="../imgs/%E5%AE%89%E8%A3%85/20.png" /></p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" data-md-state="hidden">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"/></svg>
+            Back to top
+          </a>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../.." class="md-footer__link md-footer__link--prev" aria-label="上一页: 说明" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                上一页
+              </span>
+              说明
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../VScode%E6%96%AD%E7%82%B9%E8%B0%83%E8%AF%95/" class="md-footer__link md-footer__link--next" aria-label="下一页: geant4调试" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                下一页
+              </span>
+              geant4调试
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        
+          Made with
+          <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+            Material for MkDocs
+          </a>
+        
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.top", "navigation.expand"], "translations": {"clipboard.copy": "\u590d\u5236", "clipboard.copied": "\u5df2\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\uff0c\\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.fcfe8b6d.min.js", "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.b1047164.min.js"></script>
+      
+    
+  </body>
+</html>
